@@ -10,6 +10,11 @@ console.log(res);
 */
 
 // Exercice : implémenter notre propre fonction "myMap" qui se comporte comme la méthode "map" d'un Array JS
+Array.prototype.myMap = function (callback) {
+  for (let i = 0; i < this.length; i++) {
+    this[i] = callback();
+  }
+}
 
 const testArray = [1,2,3];
 res = testArray.myMap((val, index, arr) => {

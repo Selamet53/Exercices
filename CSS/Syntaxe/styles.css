@@ -11,13 +11,48 @@ form {
     flex-direction: column;
     max-width: 200px;
     padding: 10px;
+    border-color: black;
+    border: solid 2px;
+}
+
+.rounded-border {
+    border-radius: 5%;
+}
+
+select {
+    width: 100%;
 }
 
 input {
     box-sizing: border-box;
+    width: 100%;
+    background-color: #ffffe0;
+    margin: 5px 0px;
+}
+
+#login-submit {
+    font-size: large;
+    color: white;
+    background-color: green;
+}
+
+#login-submit:hover {
+    font-size: xx-large;
+    background-color: lightgreen;
+}
+
+#logoff-reminder {
+    text-align: center;
 }
 
 /* Sélecteurs multiples pour l'élément <input> */
+[value=Connexion] {
+    font-size: large;
+}
+
+form.rounded-border :nth-child(4) {
+    font-size: large;
+}
 
 /* Pour tester */
 .a_remplacer {
@@ -25,3 +60,9 @@ input {
 }
 
 /* Exercice supplémentaire */
+
+li:hover::marker {
+    content: "★ ";
+    color: green;
+    font-size: 20px;
+}

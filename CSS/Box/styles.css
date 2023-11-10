@@ -11,34 +11,50 @@
 
 body {
     font-size: large;
+    background-color: var(--background-color);
+}
+
+p, h1 {
+    color: var(--text-color);
 }
 
 #main-container {
+    display: flex;
+    flex-direction: column;
     gap: var(--gap-size);
 }
 
 #top-bar {
-    border: 1px solid;
+    border: 1px solid var(--border-color);
     padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #top-bar-title {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin-left: 15px;
+    color: var(--text-color);
 }
 
 #main-area {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(500px, 1fr));
     gap: var(--gap-size);
 }
 
 .employee-card {
-    border: 2px solid;
+    border: 2px solid var(--border-color);
     border-radius: 10px;
+    background-color: var(--base-color);
+    display: flex;
+    position: relative;
 }
 
 .employee-card:hover {
     /* à remplacer */
-    background-color: green;
+    background-color: var(--highlight-color);
 }
 
 .employee-card:hover button {
@@ -51,6 +67,9 @@ body {
     height: 40px;
     padding: 0;
     border-radius: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .employee-info {
@@ -60,6 +79,7 @@ body {
 .employee-card>img {
     width: 200px;
     height: 200px;
+    align-items: left;
 }
 
 .position {

@@ -3,8 +3,12 @@ const songs = document.getElementsByClassName('song-item');
 let selectedSong = 0;
 
 // TODO : récupérer le lien vers l'audio
-audio.src = songs[selectedSong];
+audio.src = songs[selectedSong].dataset.url;
 
+const nowPlaying = document.getElementById('now-playing');
+const previousButton = document.getElementById('previous');
+const playButton = document.getElementById('play');
+const nextButton = document.getElementById('next');
 const timeline = document.getElementById('timeline');
 
 /**
@@ -30,7 +34,10 @@ const shortcutManager = new Map();
 function bindEvents() {
 
     // TODO : ajouter des gestionnaires pour les boutons de contrôle
-
+    previousButton.addEventListener('click', () => playPrevious());
+    playButton.addEventListener('click', () => play());
+    nextButton.addEventListener('click', () => playPrevious());
+    
     /// TODO : ajouter un gestionnaire à l'élément audio pour le déroulement d'une chanson
     audio.addEventListener('todo', () => { });
 

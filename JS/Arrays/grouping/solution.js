@@ -11,7 +11,8 @@ const teams = users.reduce((teams, user) => {
     if (!team) {
         teams.push({ team: user.team, members: [user.name] });
     }
-    // On utilise le fait que team.members est une référence vers l'objet members dans les éléments du tableau
+    // On utilise le fait que team.members est une référence 
+    // vers l'objet members dans les éléments du tableau
     else {
         team.members.push(user.name);
     }

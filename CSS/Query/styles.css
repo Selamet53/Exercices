@@ -43,7 +43,7 @@
 .notecard {
     background-color: rgba(0, 133, 242, .1);
     border: 1px solid rgba(0 133 242, .1);
-    border-left: 4px solid #0085f2 !important;
+    border-left: 4px solid #0085f2;
     margin: 1rem 0;
     padding: 0.5rem;
     position: relative;
@@ -83,9 +83,67 @@ li a {
     text-decoration: none;
 }
 
+@media screen and (max-width: 800px) {
+    #container {
+        max-width: 100%;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "top-bar"
+            "aside"
+            "main-content";
+    }
+    
+    #page-nav {
+        grid-area: aside;
+        position: relative;
+    }
+
+    #page-nav,
+    #page-nav ul {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        border-left: none;
+    }
+}
+
+@media screen and (max-width: 800px) and (min-width: 450px) {
+    .notecard {
+        background-color: #15ec15;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    #search-bar, #page-nav {
+        visibility: hidden;
+    }
+}
 
 @media print {
 
+    #top-bar,
+    #page-nav {
+        display: none;
+    }
+
+    #container {
+        max-width: 100%;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "main-content";
+    }
+
+    #types_de_media,
+    #caracteristiques_media_media_features {
+        break-before: page;
+    }
+
+    /* Problème de spécificifité :
+        Pour .notecard, l'attribut border est marqué comme !important et la règle ici ne s'applique plus, même si placée après. 
+        Il faudrait retirer !important à la ligne 46
+        Pour td et th, les sélecteurs aux lignes 65,66 ont une spécificité plus grande et s'appliquent toujours. 
+        Il faudrait changer les sélecteurs suivants pour table td, table th
+    */
     .notecard,
     td,
     th {

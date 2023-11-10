@@ -6,7 +6,7 @@ const teams = [
     "Penguins"];
 
 // Changer pour 1 ou 2
-const SOLUTION = 1;
+const SOLUTION = 2;
 
 
 /// Solution #1
@@ -29,7 +29,7 @@ else {
 
     function loadTeams() {
         const listItems = document.getElementsByClassName("team");
-        for (var i = 0; i < listItems.length; i++) {
+        for (let i = 0; i < listItems.length; i++) {
             (function (newI) {
                 listItems[newI].addEventListener("click", (e) => {
                     e.target.textContent = teams[newI];

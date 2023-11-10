@@ -26,6 +26,15 @@
       width: 100%;
     }
   </style>
+  <button id="myButton">Click me</button>
+  <script>
+    const button = document.getElementById("myButton");
+  
+    button.addEventListener("click", () => {
+      console.log(this); // 'this' fait référence à l'élément DOM (button) qui déclenche l'événement
+    });
+  </script>
+  
 </head>
 
 <body>
@@ -38,14 +47,37 @@
           <section>
             <h3> Recommanderez-vous ce produit à d'autres clients ?</h3>
           </section>
+          <input type="radio" name="recommend" value="Oui" id="yes">
+          <label for="yes">Oui</label>
+          <input type="radio" name="recommend" value="Non" id="no">
+          <label for="no">Non</label>
         </div>
         <div id="rating">
           <h3>Donnez une note entre 1 et 5 :</h3>
+          <select required>
+            <option value="" selected="true" disabled hidden>Choisir</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
         </div>
       </div>
       <div id="comment">
         <h3>Ajoutez un commentaire!</h3>
+        <section>
+          <label for="titre">
+            Titre:
+          </label>
+          <input type="text" placeholder="Que faut-il savoir sur le produit" id="titre" required>
+          <label for="comment label">
+            Message:
+          </label>
+          <textarea id="comment label" minlength="10" required></textarea>
+        </section>
       </div>
+      <input type="submit" value="Envoyer">
     </form>
   </main>
 </body>

@@ -6,7 +6,9 @@ const books = [
     { id: 5, price: 10.50, available: false },
 ];
 
-const sorted = [];
+const sorted = books.sort((acc, value) =>
+    { return value}
+);
 
 console.log(sorted);
 /* Valeur attendue :

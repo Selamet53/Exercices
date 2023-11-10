@@ -54,7 +54,25 @@ const schools = [{
 function createElement(type, props, children) {
     const element = document.createElement(type);
     // TODO : Implémenter la fonction
-    element.append(children ? children[0] : []);
+    if (props) {
+        element.id = props.id ? props.id : '';
+        element.classList.add(...props.classes ? props.classes : []);
+        if (props.rest) {
+            for (const [prop, value] of Object.entries(props.rest)) {
+                element.setAttribute(prop, value);
+            }
+        }
+    }
+
+    if (children) {
+        for (const child of children) {
+            if (typeof child === 'string') {
+                element.append(document.createTextNode(child));
+            } else {
+                element.append(child);
+            }
+        }
+    }
 
     return element;
 }
@@ -67,7 +85,12 @@ function createElement(type, props, children) {
 function buildSchoolCard(school) {
     // TODO
     const card = createElement('a',
-        { id: school.id, classes: ['school-card'], rest: { href: school.link, target: '_blank' } });
+        { id: school.id, classes: ['school-card'], rest: { href: school.link, target: '_blank' } }, [
+            createElement('img', { classes: ['logo'], rest: { src: `./assets/${school.logo}` } }),
+            createElement('div', { classes: ['info-container'] }, [
+                createElement('p', { classes: ['info-name'] }, [school.name])
+            ])
+        ]);
     return card;
 }
 
