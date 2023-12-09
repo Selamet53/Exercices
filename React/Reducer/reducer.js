@@ -13,13 +13,11 @@ const ACTIONS = {
 const reducer = (state, action) => {
     switch (action.type) {
         case ACTIONS.INCREMENT:
-            return { name: state.name, count: Math.min(state.count + action.payload, state.maxValue) };
+            return { name: state.name, count: state.count + action.payload };
         case ACTIONS.DECREMENT:
-            return { name: state.name, count: Math.max(state.count - action.payload, 0) };
+            return { name: state.name, count: state.count - action.payload };
         case ACTIONS.RESET:
             return { ...state, count: 0 };
-        case ACTIONS.RENAME:
-            return { ...state, name: action.payload.length > 0 && action.payload.length <= 10 ? action.payload : state.name };
         default:
             return state;
     }

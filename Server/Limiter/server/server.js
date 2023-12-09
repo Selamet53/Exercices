@@ -37,47 +37,10 @@ app.get('/token', (req, res) => {
     Chaque requête acceptée diminue le compteur pour ce jeton de 1
     Si le compteur est = 0, la réponse est 429 Too Many Requests
 */
-app.get("/books", (req, res) => {
-    const token = req.get("X-AUTH");
-    if (limits.has(token)) {
-        const limit = limits.get(token).count;
-        if (limit <= 0) { res.status(429).send("Vous avez atteint votre limite"); }
-        limits.set(token, { count: limit - 1});
-        const maxCount = parseInt(req.query.maxCount);
-        res.set("X-LIMIT", limit - 1);
-        res.status(200).send(maxCount ? books.slice(0, maxCount) : books);
-    }
-    res.status(403).send("Mauvais jeton envoyé");
-});
 
-app.get("/books/:id", (req, res) => {
-    const token = req.get("X-AUTH");
-    if (limits.has(token)) {
-        const limit = limits.get(token).count;
-        if (limit <= 0) { res.status(429).send("Vous avez atteint votre limite"); }
-        limits.set(token, { count: limit - 1});
-        res.set("X-LIMIT", limit - 1);
-        const random = req.query.random;
-        if (random === 'true') {
-            const randomIndex = Math.floor(Math.random() * books.length + 1);
-            return res.send(books[randomIndex]);
-        }
-        const book = books.find(x => x.id === parseInt(req.params.id));
-        if (!book) { res.status(404).send("Ce livre n'existe pas!");}
-        res.status(200).send(book);
-    }
-    res.status(403).send("Mauvais jeton envoyé");
-});
 
 // TODO : remettre la limite du jeton à MAX_REQUESTS si le jeton existe
 app.patch("/token/reset", (req, res) => {
-    const token = req.get("X-AUTH");
-    if (limits.has(token)) {
-        limits.set(token, { count: MAX_REQUESTS });
-        res.set("X-LIMIT", MAX_REQUESTS);
-        res.status(204).send();
-        return;
-    }
     res.status(404).send("Ce jeton n'existe pas");
 });
 
