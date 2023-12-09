@@ -13,7 +13,6 @@ export default function InfiniteScroll() {
                 { length: 10 },
                 (_, index) => `Message ${messages.length + index + 1}`
             );
-            setMessages([...messages, ...newMessages]);
         }, 200);
     };
 
@@ -25,21 +24,14 @@ export default function InfiniteScroll() {
     };
 
     // TODO : Ajouter un gestionnaire à l'événement scroll de la fenêtre 1 seule fois
-    useEffect(() => {
-        window.addEventListener('scroll', onScroll);
-    }, []);
+    useEffect(() => {});
 
     // TODO : Charger des messages lorsqu'on est à la fin de la page
-    useEffect(() => {
-        fetchData();
-    }, [page]);
 
     return (
         <>
             <h1>Menu infini : Descendre pour voir les nouveaux messages</h1>
-            {messages.map((message, i) => (
-                <Card key={i} text={message} index={i+1} />)
-            )}
+            <Card text="TODO : REMPLACES-MOI PAR LA LISTE DES MESSAGES" index={1} />
         </>
     );
 }
